@@ -140,8 +140,7 @@ func (s *requestService) ConfirmReturn(ctx context.Context, tenantID, reqID uuid
 func (s *requestService) AutoMatch(ctx context.Context, tenantID uuid.UUID, reqID uuid.UUID) error {
 	// Simple implementation: check all departments for availability
 	// In production, this would be more efficient
-	req, err := s.repo.FindByID(ctx, tenantID, reqID)
-	if err != nil {
+	if _, err := s.repo.FindByID(ctx, tenantID, reqID); err != nil {
 		return err
 	}
 

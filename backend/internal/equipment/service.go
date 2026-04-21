@@ -2,6 +2,7 @@ package equipment
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 
 	"github.com/google/uuid"

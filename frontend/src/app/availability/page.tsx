@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { 
-  Plus, 
   Search, 
-  Filter, 
   RefreshCw 
 } from "lucide-react";
 
@@ -68,7 +66,7 @@ export default function AvailabilityBoard() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {categories.map((cat, i) => (
+              {categories.map((cat) => (
                 <tr key={cat} className="hover:bg-white/[0.02] transition-colors group">
                   <td className="p-6 font-semibold text-white border-r border-white/5">
                     <div className="flex items-center space-x-3">
@@ -76,7 +74,7 @@ export default function AvailabilityBoard() {
                       <span>{cat}</span>
                     </div>
                   </td>
-                  {departments.map((dept, j) => {
+                  {departments.map((dept) => {
                     // Mock data logic
                     const total = Math.floor(Math.random() * 10) + 2;
                     const available = Math.floor(Math.random() * (total + 1));

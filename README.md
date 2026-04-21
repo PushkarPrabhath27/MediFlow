@@ -69,7 +69,7 @@ docker compose up --build
 
 ## Environment Configuration
 
-Core variables are defined in [`.env.example`](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/.env.example).
+Core variables are defined in [.env.example](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/.env.example>).
 
 Important values include:
 
@@ -88,7 +88,7 @@ Never commit real secrets or production credentials.
 
 ## Backend Notes
 
-The backend entry point is [backend/cmd/server/main.go](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/backend/cmd/server/main.go). It initializes:
+The backend entry point is [backend/cmd/server/main.go](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/backend/cmd/server/main.go>). It initializes:
 
 - database and Redis connections
 - JWT authentication
@@ -106,7 +106,7 @@ Primary API groups currently include:
 
 ## Frontend Notes
 
-The frontend lives in [frontend](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/frontend) and includes:
+The frontend lives in [frontend](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/frontend>) and includes:
 
 - dashboard overview page
 - live availability board
@@ -121,11 +121,11 @@ The frontend lives in [frontend](/C:/Users/pushk/OneDrive/Documents/MediFlow%203
 
 ## Documentation
 
-- [CONTRIBUTING.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/CONTRIBUTING.md)
-- [SECURITY.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/SECURITY.md)
-- [CODE_OF_CONDUCT.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/CODE_OF_CONDUCT.md)
-- [frontend/README.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/frontend/README.md)
+- [CONTRIBUTING.md](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/CONTRIBUTING.md>)
+- [SECURITY.md](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/SECURITY.md>)
+- [CODE_OF_CONDUCT.md](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/CODE_OF_CONDUCT.md>)
+- [frontend/README.md](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/frontend/README.md>)
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/LICENSE).
+This project is released under the MIT License. See [LICENSE](</C:/Users/pushk/OneDrive/Documents/MediFlow 3/LICENSE>).

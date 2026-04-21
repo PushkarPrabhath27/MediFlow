@@ -8,7 +8,6 @@ import {
   Share2, 
   Package, 
   Bell, 
-  Settings,
   LogOut
 } from "lucide-react";
 

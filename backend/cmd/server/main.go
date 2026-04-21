@@ -15,6 +15,7 @@ import (
 	"github.com/mediflow/backend/internal/request"
 	"github.com/mediflow/backend/internal/shared/db"
 	"github.com/mediflow/backend/internal/shared/jobs"
+	appmiddleware "github.com/mediflow/backend/internal/shared/middleware"
 	"github.com/mediflow/backend/internal/shared/redis"
 	"github.com/mediflow/backend/internal/shared/websocket"
 	"github.com/rs/zerolog"
@@ -88,7 +89,7 @@ func main() {
 	reqService := request.NewService(reqRepo, equipService)
 	reqHandler := request.NewHandler(reqService)
 
-	alertService := alert.NewService(database, redisClient)
+	_ = alert.NewService(database, redisClient)
 	
 	analyticsRepo := analytics.NewRepository(database)
 	analyticsService := analytics.NewService(analyticsRepo)
@@ -126,7 +127,7 @@ func main() {
 
 		// Protected routes
 		r.Group(func(r chi.Router) {
-			r.Use(middleware.AuthMiddleware(jwtManager))
+			r.Use(appmiddleware.AuthMiddleware(jwtManager))
 			equipHandler.RegisterRoutes(r)
 			reqHandler.RegisterRoutes(r)
 			analyticsHandler.RegisterRoutes(r)

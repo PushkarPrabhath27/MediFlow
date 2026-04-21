@@ -1,7 +1,6 @@
 import { 
   TrendingUp, 
   AlertCircle, 
-  ArrowUpRight, 
   History 
 } from "lucide-react";
 

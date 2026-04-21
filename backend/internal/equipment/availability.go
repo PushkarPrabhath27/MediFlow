@@ -7,7 +7,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/mediflow/backend/internal/shared/redis"
+	sharedredis "github.com/mediflow/backend/internal/shared/redis"
+	redis "github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog/log"
 )
 
@@ -38,7 +39,7 @@ func (m *AvailabilityManager) RefreshAll(ctx context.Context, tenantID uuid.UUID
 		return err
 	}
 
-	boardKey := redis.GetAvailabilityBoardKey(tenantID.String())
+	boardKey := sharedredis.GetAvailabilityBoardKey(tenantID.String())
 	
 	// Create a map for HSet
 	values := make(map[string]interface{})
@@ -83,7 +84,7 @@ func (m *AvailabilityManager) UpdateCell(ctx context.Context, tenantID, departme
 	}
 
 	// 2. Update Redis Hash
-	boardKey := redis.GetAvailabilityBoardKey(tenantID.String())
+	boardKey := sharedredis.GetAvailabilityBoardKey(tenantID.String())
 	field := fmt.Sprintf("%s:%s", departmentID.String(), categoryID.String())
 	data, _ := json.Marshal(targetRow)
 	
