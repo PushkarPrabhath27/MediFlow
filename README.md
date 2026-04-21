@@ -1,58 +1,131 @@
-# MediFlow – Hospital Equipment Utilisation & Sharing Optimiser
+# MediFlow
 
-![MediFlow Architecture](https://img.shields.io/badge/Architecture-Go%20%7C%20Next.js%20%7C%20PostgreSQL%20%7C%20Redis-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+MediFlow is a full-stack hospital equipment utilization and sharing platform built to improve visibility, reduce idle inventory, and coordinate inter-department equipment movement with a structured digital workflow.
 
-**MediFlow** is a real-time SaaS platform designed to solve a critical operational challenge in hospitals: the inefficient utilization and poor visibility of expensive medical equipment. By providing a centralized, real-time tracking system, MediFlow ensures that life-saving devices—such as ventilators, infusion pumps, and portable ultrasounds—are precisely where they need to be, exactly when they are needed.
+## Overview
 
-## 🚀 The Problem We Solve
-In a typical multi-department hospital, equipment often sits idle in one ward while another ward desperately searches for it. The lack of a centralized visibility system leads to:
-- Time wasted manually searching for equipment via phone calls.
-- Inefficient allocation of capital, as hospitals over-purchase equipment to compensate for poor visibility.
-- Sub-optimal patient care due to delays in acquiring necessary devices.
+This repository contains:
 
-## 💡 The MediFlow Solution
-MediFlow acts as the nervous system for hospital asset management. It provides:
-- **Live Availability Board:** Real-time visibility into the status and location of all shared equipment.
-- **Structured Sharing Workflow:** A 5-step digital handoff process (Request, Match, Approve, Handoff, Return) replacing ad-hoc phone coordination.
-- **Real-Time WebSockets & Redis Pub/Sub:** Instant updates across all connected clients without page refreshes.
-- **Utilization Analytics:** Deep insights into equipment idle time, demand forecasting, and procurement justification.
-- **Smart Alerts:** Automated warnings when minimum stock levels are breached.
+- A `Next.js` frontend for availability, request workflow, and dashboard views
+- A `Go` backend exposing REST APIs, JWT-based auth, analytics, equipment management, and request orchestration
+- `PostgreSQL` for persistent multi-tenant operational data
+- `Redis` for real-time coordination and WebSocket event propagation
+- `Docker Compose` for local development orchestration
 
-## 🛠️ Technology Stack
-MediFlow is built for high concurrency, low latency, and enterprise reliability:
-- **Frontend:** Next.js 14 (App Router), React, Tailwind CSS, shadcn/ui
-- **Backend:** Go (Golang) with Chi router
-- **Real-Time Hub:** Gorilla WebSockets & Redis Pub/Sub
-- **Database:** PostgreSQL 15
-- **Caching & Queues:** Redis 7
-- **Infrastructure:** Docker, Docker Compose, Kubernetes (AKS)
+## Key Capabilities
 
-## 📂 Repository Structure
-- `/backend`: The Go-based API gateway, equipment services, and WebSocket hub.
-- `/frontend`: The Next.js client interface.
-- `docker-compose.yml`: Local development environment setup containing Postgres, Redis, and application services.
+- Real-time equipment visibility across departments
+- Structured equipment sharing request lifecycle
+- QR-based equipment status updates
+- Availability summaries and status history
+- Dashboard analytics for operational monitoring
+- Multi-tenant data separation
+- WebSocket updates backed by Redis Pub/Sub
 
-## ⚙️ Quick Start
+## Tech Stack
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd mediflow
-   ```
+- Frontend: `Next.js`, `React`, `TypeScript`, `Tailwind CSS`
+- Backend: `Go`, `chi`, `sqlx`, `zerolog`
+- Data: `PostgreSQL`, `Redis`
+- Infrastructure: `Docker`, `Docker Compose`
 
-2. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Update the .env file with your local configurations
-   ```
+## Repository Structure
 
-3. **Run the application via Docker Compose**
-   ```bash
-   docker-compose up --build
-   ```
+```text
+.
+|-- backend/        Go API, domain services, migrations, and WebSocket hub
+|-- frontend/       Next.js application
+|-- docker-compose.yml
+|-- .env.example
+|-- project2_*.md   product and planning artifacts
+```
 
-## 📊 Core Features At A Glance
-- **Multi-tenant Architecture:** Isolated environments for different hospital tenants.
-- **QR Code Integration:** Quick scan-to-update functionality for physical equipment tracking.
-- **Demand Forecasting:** Algorithmic predictions for peak demand periods based on historical utilization logs.
+## Getting Started
+
+### Prerequisites
+
+- `Docker` and `Docker Compose`
+
+### Local Setup
+
+1. Clone the repository.
+2. Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+3. Start the full stack:
+
+```bash
+docker compose up --build
+```
+
+### Default Local Endpoints
+
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:8080`
+- Health check: `http://localhost:8080/health`
+
+## Environment Configuration
+
+Core variables are defined in [`.env.example`](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/.env.example).
+
+Important values include:
+
+- `PORT`
+- `DB_HOST`
+- `DB_PORT`
+- `DB_USER`
+- `DB_PASSWORD`
+- `DB_NAME`
+- `REDIS_HOST`
+- `REDIS_PORT`
+- `JWT_SECRET`
+- `FRONTEND_URL`
+
+Never commit real secrets or production credentials.
+
+## Backend Notes
+
+The backend entry point is [backend/cmd/server/main.go](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/backend/cmd/server/main.go). It initializes:
+
+- database and Redis connections
+- JWT authentication
+- equipment, request, alert, and analytics services
+- Redis-backed WebSocket broadcasting
+- background job workers
+
+Primary API groups currently include:
+
+- `/api/v1/auth`
+- `/api/v1/equipment`
+- `/api/v1/requests`
+- `/api/v1/analytics`
+- `/api/v1/ws`
+
+## Frontend Notes
+
+The frontend lives in [frontend](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/frontend) and includes:
+
+- dashboard overview page
+- live availability board
+- sharing workflow view
+
+## Quality and Maintenance
+
+- Use `.env.example` as the source of truth for local configuration
+- Keep documentation aligned with implemented behavior
+- Prefer small, reviewable pull requests
+- Add or update tests when behavior changes
+
+## Documentation
+
+- [CONTRIBUTING.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/CONTRIBUTING.md)
+- [SECURITY.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/SECURITY.md)
+- [CODE_OF_CONDUCT.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/CODE_OF_CONDUCT.md)
+- [frontend/README.md](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/frontend/README.md)
+
+## License
+
+This project is released under the MIT License. See [LICENSE](/C:/Users/pushk/OneDrive/Documents/MediFlow%203/LICENSE).

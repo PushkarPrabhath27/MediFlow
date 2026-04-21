@@ -1,0 +1,29 @@
+name: Feature Request
+description: Suggest a meaningful improvement to MediFlow
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What gap or user need does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe the desired behavior or change.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected Impact
+      description: Explain the operational, user, or product value.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Context
