@@ -9,6 +9,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/mediflow/backend/internal/alert"
+	"github.com/mediflow/backend/internal/analytics"
 	"github.com/mediflow/backend/internal/auth"
 	"github.com/mediflow/backend/internal/equipment"
 	"github.com/mediflow/backend/internal/request"
@@ -89,6 +90,10 @@ func main() {
 
 	alertService := alert.NewService(database, redisClient)
 	
+	analyticsRepo := analytics.NewRepository(database)
+	analyticsService := analytics.NewService(analyticsRepo)
+	analyticsHandler := analytics.NewHandler(analyticsService)
+	
 	worker := jobs.NewWorker(reqService, equipService)
 	go worker.Start(context.Background())
 
@@ -124,6 +129,7 @@ func main() {
 			r.Use(middleware.AuthMiddleware(jwtManager))
 			equipHandler.RegisterRoutes(r)
 			reqHandler.RegisterRoutes(r)
+			analyticsHandler.RegisterRoutes(r)
 		})
 	})
 
